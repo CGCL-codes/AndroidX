@@ -1,0 +1,43 @@
+#!/bin/sh
+
+cd /iso-bios
+
+# INITRD="$(find . -name '*.img')"
+# KERNEL="$(find . -name kernel)"
+# CMDLINE="$*"
+
+# [ "$KERNEL" = "kernel" ] || mv "$KERNEL" kernel
+# [ "$INITRD" = "initrd.img" ] || mv "$INITRD" initrd.img
+
+# clean up subdirectories
+# find . -mindepth 1 -maxdepth 1 -type d | xargs rm -rf
+
+# cp -rf /isolinux ./isolinux
+
+CFG="default vesamenu.c32
+timeout 0
+default livem
+
+label livem
+    kernel /kernel
+    append initrd=/initrd.img root=/dev/ram0 quiet SRC= DATA=
+"
+# create isolinux/isolinux.cfg
+printf "$CFG" > ./isolinux/isolinux.cfg
+
+# create bios-iso image
+mkdir -p /tmp/iso
+
+genisoimage -o /tmp/iso/android-x86_64-6.0.iso \
+    -vJURT -b isolinux/isolinux.bin -c isolinux/boot.cat \
+    -no-emul-boot -boot-load-size 4 -boot-info-table \
+    -input-charset utf-8 -V "android-x86_64-6.0" \
+    .
+
+isohybrid /tmp/iso/android-x86_64-6.0.iso
+
+
+# how to run
+# docker run -it -v /tmp/iso:/tmp/iso $(IMAGE) 
+# qemu-android /tmp/iso/android-x86_64-6.0.iso
+
