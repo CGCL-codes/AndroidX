@@ -1,14 +1,5 @@
 #!/bin/busybox sh
 #
-# By Chih-Wei Huang <cwhuang@linux.org.tw>
-# and Thorsten Glaser <tg@mirbsd.org>
-#
-# Last updated 2017/04/23
-#
-# License: GNU Public License
-# We explicitely grant the right to use the scripts
-# with Android-x86 project.
-#
 
 PATH=/sbin:/bin:/system/bin:/system/xbin; export PATH
 
