@@ -41,14 +41,14 @@ RUN mkdir /out
 # RUN ( CPUS=$(cat /proc/cpuinfo |grep "physical id" |sort |uniq |wc -l)) && \
 #( cd /root/marshmallow-x86-kernel && make -j$CPUS KCFLAGS="-fno-pie" )
 
-RUN ( cd /root/marshmallow-x86-kernel && make -j4 )
+RUN ( cd /root/marshmallow-x86-kernel && make -j20 )
 
 
 ## copy kernel to /out/
-RUN cp arch/x86/boot/bzImage /out/kernel
+RUN cp /root/marshmallow-x86-kernel/arch/x86/boot/bzImage /out/kernel
 ## kernel-modules
-RUN make INSTALL_MOD_PATH=/tmp/kernel-modules modules_install && \
-                          ( MDIR=$(basename $(find /tmp/kernel-modules/lib/modules/ -mindepth 1 -maxdepth 1)) && \
+RUN ( cd /root/marshmallow-x86-kernel && make INSTALL_MOD_PATH=/tmp/kernel-modules modules_install ) && \
+                          ( MDIR=$(basename $(find /tmp/kernel-modules/lib/modules/ -mindepth 1 -maxdepth 1))) && \
                             cd /tmp/kernel-modules/lib/modules/$MDIR && \
                             rm -f build source  && \
                             ( cd /tmp/kernel-modules && tar cf /out/kernel-modules.tar . )

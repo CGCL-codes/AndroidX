@@ -6,7 +6,7 @@
 # repo sync --no-tags --no-clone-bundle
 # SOURCE=`pwd`/kernel-source
 # 
-IMAGE=zjsyhjh/marshmallow-x86-kernel-build-env
+IMAGE=zjsyhjh/marshmallow-x86-kernel-build-env:v2
 NAME=kernel-build-container
 MEM=16g
 CPUS=0-19
