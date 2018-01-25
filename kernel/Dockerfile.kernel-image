@@ -38,7 +38,7 @@ COPY config/android-x86_64_defconfig  /root/marshmallow-x86-kernel/.config
 RUN mkdir /out
 
 ## kernel
-RUN ( CPUS=$(cat /proc/cpuinfo | grep "processor" | wc -l)) && \
+RUN ( CPUS=$(cat /proc/cpuinfo |grep "cores" |uniq |cut -d ':' -f2)) && \
           ( cd /root/marshmallow-x86-kernel && make -j$CPUS )
 
 
