@@ -1,0 +1,60 @@
+FROM ubuntu:14.04 AS kernel-image-build
+
+ENV DEBIAN_FRONTEND noninteractive
+
+RUN dpkg --add-architecture i386
+
+# common x86 build requirements
+RUN apt-get update && \
+    apt-get install -y \
+    build-essential \
+    curl \
+    git \
+    g++-multilib \
+    zlib1g:i386 \ 
+    libxml2-utils \
+    squashfs-tools \
+    dosfstools \
+    mtools \
+    python \
+    python-libxml2 \
+    python-mako \
+    bison \
+    zip \
+    unzip \ 
+    bc \
+    gperf \
+    gettext \
+    genisoimage \
+    syslinux \
+    libncurses5-dev \
+    libncursesw5-dev
+
+
+
+COPY marshmallow-x86-kernel /root/marshmallow-x86-kernel
+COPY config/android-x86_64_defconfig  /root/marshmallow-x86-kernel/.config
+
+RUN mkdir /out
+
+## kernel
+RUN ( CPUS=$(cat /proc/cpuinfo | grep "processor" | wc -l)) && \
+          ( cd /root/marshmallow-x86-kernel && make -j$CPUS )
+
+
+## copy kernel to /out/
+RUN cp arch/x86/boot/bzImage /out/kernel
+## kernel-modules
+RUN make INSTALL_MOD_PATH=/tmp/kernel-modules modules_install && \
+                          ( MDIR=$(basename $(find /tmp/kernel-modules/lib/modules/ -mindepth 1 -maxdepth 1)) && \
+                            cd /tmp/kernel-modules/lib/modules/$MDIR && \
+                            rm -f build source  && \
+                            ( cd /tmp/kernel-modules && tar cf /out/kernel-modules.tar . )
+
+
+FROM scratch
+ENTRYPOINT []
+CMD []
+WORKDIR /
+COPY --from=kernel-image-build  /out/* /
+

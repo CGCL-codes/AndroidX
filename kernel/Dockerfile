@@ -1,14 +1,39 @@
-# run after building marshmallow-x86, see build-marshmallow-x86/Makefile
-FROM scratch
-WORKDIR /
+FROM ubuntu:14.04
 
-ENV OUT=~/marshmallow-x86-r3/out/target/product/x86_64
-ENV KERNEL_SOURCE=marshmallow-x86-r3
-COPY ${OUT}/kernel /kernel
-RUN printf "KERNEL_SOURCE=${KERNEL_SOURCE}\n" > /kernel-source-info
+WORKDIR /root/marshmallow-x86-kernel
 
-ENTRYPOINT []
-CMD []
+ENV DEBIAN_FRONTEND noninteractive
 
+RUN dpkg --add-architecture i386
+
+# common x86 build requirements
+RUN apt-get update && \
+    apt-get install -y \
+    build-essential \
+    curl \
+    git \
+    g++-multilib \
+    zlib1g:i386 \ 
+    libxml2-utils \
+    squashfs-tools \
+    dosfstools \
+    mtools \
+    python \
+    python-libxml2 \
+    python-mako \
+    bison \
+    zip \
+    unzip \ 
+    bc \
+    gperf \
+    gettext \
+    genisoimage \
+    syslinux \
+    libncurses5-dev \
+    libncursesw5-dev
+
+
+COPY marshmallow-x86-kernel /root/marshmallow-x86-kernel
+COPY config/android-x86_64_defconfig  /root/marshmallow-x86-kernel/.config
 
 
