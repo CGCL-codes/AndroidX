@@ -1,9 +1,9 @@
 #!/bin/sh
 
 DOCKERFILE=`pwd`/Dockerfile.kernel-image 
-HASH=`md5sum ${DOCKERFILE}`
+HASH=`md5sum ${DOCKERFILE} | cut -d ' ' -f1`
 ORG=zjsyhjh
-IMAGE=AndroidX-kernel
+IMAGE=androidx-kernel
 
 ## build kernel image
 docker build -f ${DOCKERFILE} -t ${ORG}/${IMAGE}:${HASH} .
