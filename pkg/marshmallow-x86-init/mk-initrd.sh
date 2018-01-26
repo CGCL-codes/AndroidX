@@ -1,21 +1,23 @@
 #!/bin/sh
 
-# create new-initrd.img under ~/new-initrd folder
+# create new-initrd.img under /new-initrd folder
+# run this script in a container
 
 set -e
 
-DST=/new-initrd
-
-rm -rf /old-initrd
-mkdir /old-initrd 
+mkdir /old-initrd
 cd /old-initrd
-zcat /images/initrd.img | cpio -iud
-cp -f /images/ramdisk.img ./ 
-cp -f /images/init ./
+zcat /root/initrd/initrd.img | cpio -iud
 
+# get ramdisk.img
+cd /root/ramdisk
+find . | cpio --quiet -H newc -o | gzip -9 -n > /old-initrd/ramdisk.img
 
-find . | cpio --quiet -H newc -o | gzip -9 -n > ${DST}/initrd.img
+# update init
+cp -f /root/init /old-initrd/
 
+# get new-initrd.img
+mkdir /new-initrd
+cd /old-initrd
+find . | cpio --quiet -H newc -o | gzip -9 -n > /new-initrd/initrd.img
 
-# how to run
-# docker run -it -v ~/new-initrd:/new-initrd $(IMAGE) 
