@@ -1,0 +1,60 @@
+#
+# By Chih-Wei Huang <cwhuang@linux.org.tw>
+# Last updated 2017/04/23
+#
+# License: GNU Public License
+# We explicitely grant the right to use the scripts
+# with Android-x86 project.
+#
+
+mount_data()
+{
+	mountpoint -q data && return
+	if [ -n "$DATA" ]; then
+		blk=`basename $DATA`
+		if [ -b "/dev/$blk" ]; then
+			[ ! -e /dev/block/$blk ] && ln /dev/$blk /dev/block
+			mount -o noatime /dev/block/$blk data
+		elif [ "$DATA" = "9p" ]; then
+			modprobe 9pnet_virtio
+			mount -t 9p -o trans=virtio data data -oversion=9p2000.L,posixacl,cache=loose
+		else
+			remount_rw
+			mkdir -p /mnt/$SRC/$DATA
+			mount --bind /mnt/$SRC/$DATA data
+		fi
+	elif [ -d /mnt/$SRC/data ]; then
+		remount_rw
+		mount --bind /mnt/$SRC/data data
+	elif [ -f /mnt/$SRC/data.img ]; then
+		remount_rw
+		mount -o loop,noatime /mnt/$SRC/data.img data
+	else
+		device_mount_data || mount -t tmpfs tmpfs data
+	fi
+}
+
+mount_sdcard()
+{
+	mountpoint -q sdcard && return
+	if [ -n "$SDCARD" -a -e /mnt/$SRC$SDCARD ]; then
+		if [ ! -e /android$SDCARD ]; then
+			remount_rw
+			sddir=`dirname $SDCARD`
+			mkdir /android$sddir
+			mount --bind /mnt/$SRC$sddir /android$sddir
+		fi
+	elif [ "$SDCARD" = "premount" ]; then
+	# WARNING: premount the sdcard is deprecated since froyo-x86.
+	# It is left only for backward compatibility and may be removed
+	# in the future.
+		if [ -d /mnt/$SRC/sdcard ]; then
+			remount_rw
+			mount --bind /mnt/$SRC/sdcard mnt/sdcard
+		elif [ -d data/sdcard ]; then
+			mount --bind data/sdcard mnt/sdcard
+		else
+			mount -o mode=2777,uid=1000,gid=1015 -t tmpfs tmpfs mnt/sdcard
+		fi
+	fi
+}

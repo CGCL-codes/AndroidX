@@ -1,0 +1,15 @@
+#
+# By Chih-Wei Huang <cwhuang@linux.org.tw>
+# Last updated 2009/12/10
+#
+# License: GNU Public License
+# We explicitely grant the right to use the scripts
+# with Android-x86 project.
+#
+
+do_install()
+{
+	error -e '\n  Android-x86 installer is not available.\n  Press RETURN to run live version.\n'
+	read
+	cd /android
+}
