@@ -6,10 +6,8 @@
 # repo sync --no-tags --no-clone-bundle
 # SOURCE=`pwd`/kernel-source
 # 
-IMAGE=zjsyhjh/marshmallow-x86-kernel-build-env:v2
+IMAGE=zjsyhjh/marshmallow-x86-kernel-build-env
 NAME=kernel-build-container
-MEM=16g
-CPUS=0-19
 
 default: run
 
@@ -17,7 +15,7 @@ build: Dockerfile
 	docker build -f Dockerfile -t $(IMAGE) .
 
 run: build
-	docker run -it --name $(NAME) --memory=$(MEM) --cpuset-cpus=$(CPUS) $(IMAGE)
+	docker run -it --name $(NAME) $(IMAGE)
 
 clean:
 	docker stop $(NAME)
