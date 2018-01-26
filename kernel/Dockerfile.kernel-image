@@ -38,10 +38,7 @@ COPY config/android-x86_64_defconfig  /root/marshmallow-x86-kernel/.config
 RUN mkdir /out
 
 ## kernel
-# RUN ( CPUS=$(cat /proc/cpuinfo |grep "physical id" |sort |uniq |wc -l)) && \
-#( cd /root/marshmallow-x86-kernel && make -j$CPUS KCFLAGS="-fno-pie" )
-
-RUN ( cd /root/marshmallow-x86-kernel && make -j20 )
+RUN ( cd /root/marshmallow-x86-kernel && make -j "$(getconf _NPROCESSORS_ONLN)" )
 
 
 ## copy kernel to /out/
