@@ -24,7 +24,7 @@ RUN ( cp -f /root/init /old-initrd/init)
 
 
 # get new-initrd.img
-RUN ( mkdir /out && cd /out && \
+RUN ( mkdir /out && cd /old-initrd && \
         ( find . | cpio --quiet -H newc -o | gzip -9 -n > /out/initrd.img))
 
 
