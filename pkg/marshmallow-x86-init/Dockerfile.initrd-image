@@ -1,0 +1,23 @@
+FROM alpine:3.6 AS initrd-image-build
+
+RUN \
+    apk update && apk upgrade && \
+    apk add --no-cache \
+    cpio \
+    && true
+
+COPY initrd /root/initrd
+COPY ramdisk /root/ramdisk
+COPY init /root/init
+
+
+RUN 
+
+
+FROM scratch
+ENTRYPOINT []
+CMD []
+WORKDIR /
+COPY --from=initrd-image-build /
+
+
