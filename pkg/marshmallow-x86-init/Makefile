@@ -11,7 +11,7 @@ build: Dockerfile
 	docker build -f Dockerfile -t $(IMAGE) .
 
 run: build
-	docker run -it --name $(NAME) -v ~/images:/images $(IMAGE)
+	docker run -it --name $(NAME) $(IMAGE)
 
 
 clean:
