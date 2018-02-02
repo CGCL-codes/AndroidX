@@ -2,9 +2,14 @@
 
 
 DOCKERFILE=`pwd`/Dockerfile.initrd-image
-HASH=`md5sum ${DOCKERFILE} | cut -d ' ' -f1`
 ORG=zjsyhjh
 IMAGE=androidx-init
+# md5sum
+find ./ramdisk/ -type f -print0 | xargs -0 md5sum > ./md5sum-txt
+find ./initrd/ -type f -print0 | xargs -0 md5sum >> ./md5sum-txt
+md5sum ./mk-initrd.sh >> ./md5sum-txt
+md5sum ${DOCKERFILE} >> ./md5sum-txt
+HASH=`md5sum md5sum-txt | cut -d ' ' -f1` 
 
 ## build init image
 docker build -f ${DOCKERFILE} -t ${ORG}/${IMAGE}:${HASH} .
