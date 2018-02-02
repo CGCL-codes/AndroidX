@@ -12,11 +12,11 @@ COPY init /root/init
 
 
 # unpack initrd.img
-RUN ( mkdir /old-initrd && cd /old-initrd && \
+RUN ( (mkdir /old-initrd) && (cd /old-initrd) && \
         ( zcat /root/initrd/initrd.img | cpio -iud))
 
 # pack ramdisk.img
-RUN ( cd /root/ramdisk && ( find . | cpio --quiet -H newc -o | gzip -9 -n > /old-initrd/ramdisk.img))
+RUN ( (cd /root/ramdisk) && ( find . | cpio --quiet -H newc -o | gzip -9 -n > /old-initrd/ramdisk.img))
 
 
 # update init
@@ -24,7 +24,7 @@ RUN ( cp -f /root/init /old-initrd/init)
 
 
 # get new-initrd.img
-RUN ( mkdir /out && cd /old-initrd && \
+RUN ( (mkdir /out) && (cd /old-initrd) && \
         ( find . | cpio --quiet -H newc -o | gzip -9 -n > /out/initrd.img))
 
 
