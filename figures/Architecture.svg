@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- 由 Microsoft Visio, SVG Export 生成 Architecture.svg Page-1 -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events"
+		xmlns:v="http://schemas.microsoft.com/visio/2003/SVGExtensions/" width="8.26772in" height="11.6929in"
+		viewBox="0 0 595.276 841.89" xml:space="preserve" color-interpolation-filters="sRGB" class="st26">
+	<v:documentProperties v:langID="2052" v:metric="true" v:viewMarkup="false">
+		<v:userDefs>
+			<v:ud v:nameU="msvNoAutoConnect" v:val="VT0(1):26"/>
+		</v:userDefs>
+	</v:documentProperties>
+
+	<style type="text/css">
+	<![CDATA[
+		.st1 {fill:#d8d8d8;stroke:#7f7f7f;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
+		.st2 {fill:#000000;font-family:Times New Roman;font-size:1.16666em}
+		.st3 {fill:#bfbfbf;stroke:#0c0c0c;stroke-linecap:round;stroke-linejoin:round;stroke-width:1}
+		.st4 {stroke:#000000;stroke-dasharray:5.25,3.75;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
+		.st5 {fill:#f2f2f2;stroke:#a5a5a5;stroke-linecap:round;stroke-linejoin:round;stroke-width:1}
+		.st6 {fill:#000000;font-family:Times New Roman;font-size:1.00001em}
+		.st7 {marker-end:url(#mrkr5-29);stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
+		.st8 {fill:#000000;fill-opacity:1;stroke:#000000;stroke-opacity:1;stroke-width:0.22935779816514}
+		.st9 {fill:none;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
+		.st10 {marker-start:url(#mrkr5-61);stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
+		.st11 {fill:#f2f2f2;fill-opacity:0.3;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
+		.st12 {fill:none;marker-end:url(#mrkr1-76);stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.5}
+		.st13 {fill:#000000;fill-opacity:1;stroke:#000000;stroke-opacity:1;stroke-width:0.16556291390728}
+		.st14 {fill:none;marker-end:url(#mrkr1-85);stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
+		.st15 {fill:#31859b;font-family:Times New Roman;font-size:1.00001em}
+		.st16 {fill:#000000;font-family:宋体;font-size:1.00001em}
+		.st17 {font-family:Times New Roman;font-size:1em}
+		.st18 {fill:#d8d8d8}
+		.st19 {stroke:#0c0c0c;stroke-width:0.75}
+		.st20 {fill:#4f87bb;font-family:Times New Roman;font-size:1.00001em}
+		.st21 {font-size:1em}
+		.st22 {font-family:宋体;font-size:1em}
+		.st23 {fill:#bdbdbd;stroke:#0c0c0c;stroke-width:0.75}
+		.st24 {fill:none;stroke:none;stroke-width:0.25}
+		.st25 {fill:#0c0c0c;font-family:Times New Roman;font-size:1.16666em}
+		.st26 {fill:none;fill-rule:evenodd;font-size:12px;overflow:visible;stroke-linecap:square;stroke-miterlimit:3}
+	]]>
+	</style>
+
+	<defs id="Markers">
+		<g id="lend5">
+			<path d="M 2 1 L 0 0 L 1.98117 -0.993387 C 1.67173 -0.364515 1.67301 0.372641 1.98465 1.00043 " style="stroke:none"/>
+		</g>
+		<marker id="mrkr5-29" class="st8" v:arrowType="5" v:arrowSize="2" v:setback="7.63" refX="-7.63" orient="auto"
+				markerUnits="strokeWidth" overflow="visible">
+			<use xlink:href="#lend5" transform="scale(-4.36,-4.36) "/>
+		</marker>
+		<marker id="mrkr5-61" class="st8" v:arrowType="5" v:arrowSize="2" v:setback="7.15" refX="7.15" orient="auto"
+				markerUnits="strokeWidth" overflow="visible">
+			<use xlink:href="#lend5" transform="scale(4.36) "/>
+		</marker>
+		<g id="lend1">
+			<path d="M 1 -1 L 0 0 L 1 1 " style="stroke-linecap:round;stroke-linejoin:round;fill:none"/>
+		</g>
+		<marker id="mrkr1-76" class="st13" v:arrowType="1" v:arrowSize="2" orient="auto" markerUnits="strokeWidth"
+				overflow="visible">
+			<use xlink:href="#lend1" transform="scale(-6.04,-6.04) "/>
+		</marker>
+		<marker id="mrkr1-85" class="st8" v:arrowType="1" v:arrowSize="2" orient="auto" markerUnits="strokeWidth"
+				overflow="visible">
+			<use xlink:href="#lend1" transform="scale(-4.36,-4.36) "/>
+		</marker>
+	</defs>
+	<g v:mID="0" v:index="1" v:groupContext="foregroundPage">
+		<v:userDefs>
+			<v:ud v:nameU="OrgChartStyle" v:prompt="" v:val="VT0(1):26"/>
+		</v:userDefs>
+		<title>页-1</title>
+		<v:pageProperties v:drawingScale="0.0393701" v:pageScale="0.0393701" v:drawingUnits="24" v:shadowOffsetX="8.50394"
+				v:shadowOffsetY="-8.50394"/>
+		<g id="shape4-1" v:mID="4" v:groupContext="shape" transform="translate(411.024,-496.063)">
+			<title>圆角矩形</title>
+			<desc>AndroidX Instance</desc>
+			<v:userDefs>
+				<v:ud v:nameU="CTypeTopLeftSnip" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="CTypeTopRightSnip" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="CTypeBotLeftSnip" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="CTypeBotRightSnip" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="CornerLockHoriz" v:prompt="" v:val="VT0(1):5"/>
+				<v:ud v:nameU="CornerLockVert" v:prompt="" v:val="VT0(1):5"/>
+				<v:ud v:nameU="CornerLockDiag" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="TopLeftOffset" v:prompt="" v:val="VT0(0.15748031496063):24"/>
+				<v:ud v:nameU="TopRightOffset" v:prompt="" v:val="VT0(0.15748031496063):24"/>
+				<v:ud v:nameU="BotLeftOffset" v:prompt="" v:val="VT0(0.15748031496063):24"/>
+				<v:ud v:nameU="BotRightOffset" v:prompt="" v:val="VT0(0.15748031496063):24"/>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="TopLeftOffset" v:prompt="" v:val="VT0(0.19173186623205):1"/>
+				<v:ud v:nameU="TopRightOffset" v:prompt="" v:val="VT0(0.19173186623205):1"/>
+				<v:ud v:nameU="BotLeftOffset" v:prompt="" v:val="VT0(0.19173186623205):1"/>
+				<v:ud v:nameU="BotRightOffset" v:prompt="" v:val="VT0(0.19173186623205):1"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="69.0235" cy="827.717" width="138.05" height="28.3465"/>
+			<path d="M13.8 841.89 L124.24 841.89 A13.8045 13.8045 -180 0 0 138.05 828.09 L138.05 827.35 A13.8045 13.8045 -180 0 0
+						 124.24 813.54 L13.8 813.54 A13.8045 13.8045 -180 0 0 -0 827.35 L0 828.09 A13.8045 13.8045 -180 0 0 13.8
+						 841.89 Z" class="st1"/>
+			<text x="15.57" y="831.92" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>AndroidX Instance</text>		</g>
+		<g id="shape5-4" v:mID="5" v:groupContext="shape" transform="translate(409.929,-272.133)">
+			<title>圆角矩形.5</title>
+			<desc>AndroidX Instance</desc>
+			<v:userDefs>
+				<v:ud v:nameU="CTypeTopLeftSnip" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="CTypeTopRightSnip" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="CTypeBotLeftSnip" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="CTypeBotRightSnip" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="CornerLockHoriz" v:prompt="" v:val="VT0(1):5"/>
+				<v:ud v:nameU="CornerLockVert" v:prompt="" v:val="VT0(1):5"/>
+				<v:ud v:nameU="CornerLockDiag" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="TopLeftOffset" v:prompt="" v:val="VT0(0.15748031496063):24"/>
+				<v:ud v:nameU="TopRightOffset" v:prompt="" v:val="VT0(0.15748031496063):24"/>
+				<v:ud v:nameU="BotLeftOffset" v:prompt="" v:val="VT0(0.15748031496063):24"/>
+				<v:ud v:nameU="BotRightOffset" v:prompt="" v:val="VT0(0.15748031496063):24"/>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="TopLeftOffset" v:prompt="" v:val="VT0(0.19173186623205):1"/>
+				<v:ud v:nameU="TopRightOffset" v:prompt="" v:val="VT0(0.19173186623205):1"/>
+				<v:ud v:nameU="BotLeftOffset" v:prompt="" v:val="VT0(0.19173186623205):1"/>
+				<v:ud v:nameU="BotRightOffset" v:prompt="" v:val="VT0(0.19173186623205):1"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="69.0235" cy="827.717" width="138.05" height="28.3465"/>
+			<path d="M13.8 841.89 L124.24 841.89 A13.8045 13.8045 -180 0 0 138.05 828.09 L138.05 827.35 A13.8045 13.8045 -180 0 0
+						 124.24 813.54 L13.8 813.54 A13.8045 13.8045 -180 0 0 -0 827.35 L0 828.09 A13.8045 13.8045 -180 0 0 13.8
+						 841.89 Z" class="st1"/>
+			<text x="15.57" y="831.92" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>AndroidX Instance</text>		</g>
+		<g id="shape6-7" v:mID="6" v:groupContext="shape" transform="translate(404.646,-323.142)">
+			<title>圆角矩形.6</title>
+			<v:userDefs>
+				<v:ud v:nameU="CTypeTopLeftSnip" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="CTypeTopRightSnip" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="CTypeBotLeftSnip" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="CTypeBotRightSnip" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="CornerLockHoriz" v:prompt="" v:val="VT0(1):5"/>
+				<v:ud v:nameU="CornerLockVert" v:prompt="" v:val="VT0(1):5"/>
+				<v:ud v:nameU="CornerLockDiag" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="TopLeftOffset" v:prompt="" v:val="VT0(0.15748031496063):24"/>
+				<v:ud v:nameU="TopRightOffset" v:prompt="" v:val="VT0(0.15748031496063):24"/>
+				<v:ud v:nameU="BotLeftOffset" v:prompt="" v:val="VT0(0.15748031496063):24"/>
+				<v:ud v:nameU="BotRightOffset" v:prompt="" v:val="VT0(0.15748031496063):24"/>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="TopLeftOffset" v:prompt="" v:val="VT0(0.21161375324827):1"/>
+				<v:ud v:nameU="TopRightOffset" v:prompt="" v:val="VT0(0.21161375324827):1"/>
+				<v:ud v:nameU="BotLeftOffset" v:prompt="" v:val="VT0(0.21161375324827):1"/>
+				<v:ud v:nameU="BotRightOffset" v:prompt="" v:val="VT0(0.21161375324827):1"/>
+			</v:userDefs>
+			<path d="M15.24 841.89 L137.13 841.89 A15.2359 15.2359 -180 0 0 152.36 826.65 L152.36 712.55 A15.2359 15.2359 -180 0
+						 0 137.13 697.32 L15.24 697.32 A15.2359 15.2359 -180 0 0 -0 712.55 L0 826.65 A15.2359 15.2359 -180 0 0 15.24
+						 841.89 Z" class="st1"/>
+		</g>
+		<g id="shape7-9" v:mID="7" v:groupContext="shape" transform="translate(250.622,-363.442)">
+			<title>圆角矩形.7</title>
+			<desc>AndroidKit</desc>
+			<v:userDefs>
+				<v:ud v:nameU="CTypeTopLeftSnip" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="CTypeTopRightSnip" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="CTypeBotLeftSnip" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="CTypeBotRightSnip" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="CornerLockHoriz" v:prompt="" v:val="VT0(1):5"/>
+				<v:ud v:nameU="CornerLockVert" v:prompt="" v:val="VT0(1):5"/>
+				<v:ud v:nameU="CornerLockDiag" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="TopLeftOffset" v:prompt="" v:val="VT0(0.15748031496063):24"/>
+				<v:ud v:nameU="TopRightOffset" v:prompt="" v:val="VT0(0.15748031496063):24"/>
+				<v:ud v:nameU="BotLeftOffset" v:prompt="" v:val="VT0(0.15748031496063):24"/>
+				<v:ud v:nameU="BotRightOffset" v:prompt="" v:val="VT0(0.15748031496063):24"/>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="TopLeftOffset" v:prompt="" v:val="VT0(0.11220472440945):1"/>
+				<v:ud v:nameU="TopRightOffset" v:prompt="" v:val="VT0(0.11220472440945):1"/>
+				<v:ud v:nameU="BotLeftOffset" v:prompt="" v:val="VT0(0.11220472440945):1"/>
+				<v:ud v:nameU="BotRightOffset" v:prompt="" v:val="VT0(0.11220472440945):1"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="40.3937" cy="808.481" width="80.79" height="66.8166"/>
+			<path d="M8.08 841.89 L72.71 841.89 A8.07861 8.07861 -180 0 0 80.79 833.81 L80.79 783.15 A8.07861 8.07861 -180 0 0 72.71
+						 775.07 L8.08 775.07 A8.07861 8.07861 -180 0 0 0 783.15 L0 833.81 A8.07861 8.07861 -180 0 0 8.08 841.89 Z"
+					class="st3"/>
+			<text x="8.12" y="812.68" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>AndroidKit</text>		</g>
+		<g id="shape11-12" v:mID="11" v:groupContext="shape" transform="translate(478.346,-474.803)">
+			<title>工作表.11</title>
+			<path d="M0 827.72 L0 839.97 L0 841.89" class="st4"/>
+		</g>
+		<g id="shape16-15" v:mID="16" v:groupContext="shape" transform="translate(411.024,-344.959)">
+			<title>矩形</title>
+			<desc>AndroidX-Kernel</desc>
+			<v:userDefs>
+				<v:ud v:nameU="visVersion" v:val="VT0(15):26"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="69.1552" cy="823.031" width="138.32" height="37.7181"/>
+			<rect x="0" y="804.172" width="138.31" height="37.7181" class="st5"/>
+			<text x="19.39" y="827.23" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>AndroidX-Kernel</text>		</g>
+		<g id="shape22-18" v:mID="22" v:groupContext="shape" transform="translate(411.024,-382.677)">
+			<title>矩形.22</title>
+			<desc>AndroidX-Init</desc>
+			<v:userDefs>
+				<v:ud v:nameU="visVersion" v:val="VT0(15):26"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="69.0235" cy="829.336" width="138.05" height="25.1069"/>
+			<rect x="0" y="816.783" width="138.047" height="25.1069" class="st5"/>
+			<text x="28.59" y="833.54" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>AndroidX-Init</text>		</g>
+		<g id="shape23-21" v:mID="23" v:groupContext="shape" transform="translate(411.024,-411.024)">
+			<title>矩形.23</title>
+			<desc>App or App Container</desc>
+			<v:userDefs>
+				<v:ud v:nameU="visVersion" v:val="VT0(15):26"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="69.0235" cy="822.956" width="138.05" height="37.8669"/>
+			<rect x="0" y="804.023" width="138.047" height="37.8669" class="st5"/>
+			<text x="15.2" y="826.56" class="st6" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>App or App Container</text>		</g>
+		<g id="shape41-24" v:mID="41" v:groupContext="shape" transform="translate(-322.73,-84.9417) rotate(-50.9858)">
+			<title>工作表.41</title>
+			<path d="M0 841.89 L127.17 841.89" class="st7"/>
+		</g>
+		<g id="shape42-30" v:mID="42" v:groupContext="shape" transform="translate(347.741,-396.692) rotate(1.11155)">
+			<title>工作表.42</title>
+			<path d="M0 841.89 L67.53 841.89" class="st7"/>
+		</g>
+		<g id="shape43-35" v:mID="43" v:groupContext="shape" transform="translate(981.705,-89.651) rotate(50.5721)">
+			<title>工作表.43</title>
+			<path d="M0 841.89 L124.28 841.89" class="st7"/>
+		</g>
+		<g id="shape47-40" v:mID="47" v:groupContext="shape" transform="translate(196.853,-396.85)">
+			<title>工作表.47</title>
+			<path d="M0 841.89 L48.05 841.89" class="st7"/>
+		</g>
+		<g id="shape48-45" v:mID="48" v:groupContext="shape" transform="translate(-558.425,411.631) rotate(-90)">
+			<title>工作表.48</title>
+			<path d="M0 841.89 L60.08 841.89" class="st7"/>
+		</g>
+		<g id="shape53-50" v:mID="53" v:groupContext="shape" transform="translate(293.142,-443.42)">
+			<title>工作表.53</title>
+			<desc>Pull</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="19.1339" cy="834.803" width="38.27" height="14.1732"/>
+			<rect x="0" y="827.717" width="38.2678" height="14.1732" class="st9"/>
+			<text x="7.85" y="839" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>Pull</text>		</g>
+		<g id="shape54-53" v:mID="54" v:groupContext="shape" transform="translate(346.433,-395.838)">
+			<title>工作表.54</title>
+			<desc>Run</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="19.1339" cy="834.094" width="38.27" height="15.5906"/>
+			<rect x="0" y="826.299" width="38.2678" height="15.5906" class="st9"/>
+			<text x="7.47" y="838.29" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>Run</text>		</g>
+		<g id="shape55-56" v:mID="55" v:groupContext="shape" transform="translate(-550.874,411.631) rotate(-90)">
+			<title>工作表.55</title>
+			<path d="M5.36 841.89 L5.72 841.89 L65.8 841.89" class="st10"/>
+		</g>
+		<g id="shape56-62" v:mID="56" v:groupContext="shape" transform="translate(240.945,-453.543)">
+			<title>工作表.56</title>
+			<desc>Push</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="22.9606" cy="834.803" width="45.93" height="14.1732"/>
+			<rect x="0" y="827.717" width="45.9213" height="14.1732" class="st9"/>
+			<text x="9.34" y="839" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>Push</text>		</g>
+		<g id="shape71-65" v:mID="71" v:groupContext="shape" transform="translate(236.449,-581.102)">
+			<title>工作表.71</title>
+			<rect x="0" y="827.717" width="78.2362" height="14.1732" class="st9"/>
+		</g>
+		<g id="shape74-67" v:mID="74" v:groupContext="shape" transform="translate(199.263,-396.85)">
+			<title>工作表.74</title>
+			<desc>Parse</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="27.9276" cy="834.094" width="55.86" height="15.5906"/>
+			<rect x="0" y="826.299" width="55.8552" height="15.5906" class="st9"/>
+			<text x="12.77" y="838.29" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>Parse</text>		</g>
+		<g id="group81-70" transform="translate(203.528,-465.652)" v:mID="81" v:groupContext="group">
+			<v:custProps>
+				<v:cp v:nameU="ShapeClass" v:lbl="ShapeClass" v:prompt="" v:type="0" v:format="" v:sortKey="" v:invis="true"
+						v:ask="false" v:langID="2052" v:cal="0" v:val="VT4(位置)"/>
+				<v:cp v:nameU="ShapeType" v:lbl="ShapeType" v:prompt="" v:type="0" v:format="" v:sortKey="" v:invis="true"
+						v:ask="false" v:langID="2052" v:cal="0" v:val="VT4(云)"/>
+			</v:custProps>
+			<v:userDefs>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="ShapeClass" v:prompt="" v:val="VT0(5):26"/>
+				<v:ud v:nameU="SolSH" v:prompt="" v:val="VT15({BF0433D9-CD73-4EB5-8390-8653BE590246}):41"/>
+				<v:ud v:nameU="visLegendShape" v:prompt="" v:val="VT0(2):26"/>
+			</v:userDefs>
+			<title>云形</title>
+			<g id="shape82-71" v:mID="82" v:groupContext="shape" transform="translate(0,-30.8436)">
+				<title>工作表.82</title>
+				<path d="M154.57 781.58 C153.6 774.75 145.91 769.41 136.45 769.41 C133.76 769.41 131.24 769.86 128.94 770.63 C124.49
+							 763.92 115.29 759 98.01 759.4 C75.56 759.92 48.99 768.07 43.64 782.54 C37.24 783.52 33.13 786.32 30.67
+							 790.05 C29.67 789.97 28.66 789.92 27.62 789.92 C12.84 789.92 1.49 798.62 0.84 809.34 C0 823.21 12.84
+							 828.76 27.62 828.76 C29.74 828.76 31.78 828.57 33.75 828.23 C36.82 829.85 40.83 830.84 45.22 830.84
+							 C49.27 830.84 53.01 829.99 55.98 828.57 C61.67 836.39 73.37 841.89 86.85 841.25 C101.05 840.58 109.57
+							 838.14 114.6 834.37 C114.91 834.34 115.21 834.34 115.53 834.31 C131.4 832.67 138.38 829.35 140.62 823.88
+							 C141.04 823.89 141.47 823.9 141.89 823.9 C162.48 823.9 179.15 819.05 179.15 802.06 C179.15 792.61 168.87
+							 784.64 154.57 781.58 Z" class="st11"/>
+			</g>
+		</g>
+		<g id="shape83-73" v:mID="83" v:groupContext="shape" transform="translate(258.52,-551.693)">
+			<title>工作表.83</title>
+			<desc>Init:v1 image</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="39.1181" cy="834.272" width="78.24" height="15.2362"/>
+			<rect x="0" y="826.654" width="78.2362" height="15.2362" class="st12"/>
+			<text x="6.96" y="837.87" class="st6" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>Init:v1 image</text>		</g>
+		<g id="shape85-78" v:mID="85" v:groupContext="shape" transform="translate(255.118,-530.965)">
+			<title>工作表.85</title>
+			<desc>Kernel:4.10 image</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="56.6929" cy="834.272" width="113.39" height="15.2362"/>
+			<rect x="0" y="826.654" width="113.386" height="15.2362" class="st12"/>
+			<text x="12.04" y="837.87" class="st6" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>Kernel:4.10 image</text>		</g>
+		<g id="shape86-82" v:mID="86" v:groupContext="shape" transform="translate(252.283,-508.518)">
+			<title>工作表.86</title>
+			<desc>Image Registry</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="45.3543" cy="833.944" width="90.71" height="15.8912"/>
+			<rect x="0" y="825.999" width="90.7087" height="15.8912" class="st14"/>
+			<text x="8.53" y="837.54" class="st15" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>Image Registry</text>		</g>
+		<g id="shape92-87" v:mID="92" v:groupContext="shape" transform="translate(478.772,-304.016)">
+			<title>工作表.92</title>
+			<path d="M0 826.3 L0 839.78 L0 841.89" class="st4"/>
+		</g>
+		<g id="shape93-90" v:mID="93" v:groupContext="shape" transform="translate(408.37,-538.583)">
+			<title>圆角矩形.93</title>
+			<desc>AndroidX Instance</desc>
+			<v:userDefs>
+				<v:ud v:nameU="CTypeTopLeftSnip" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="CTypeTopRightSnip" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="CTypeBotLeftSnip" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="CTypeBotRightSnip" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="CornerLockHoriz" v:prompt="" v:val="VT0(1):5"/>
+				<v:ud v:nameU="CornerLockVert" v:prompt="" v:val="VT0(1):5"/>
+				<v:ud v:nameU="CornerLockDiag" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="TopLeftOffset" v:prompt="" v:val="VT0(0.15748031496063):24"/>
+				<v:ud v:nameU="TopRightOffset" v:prompt="" v:val="VT0(0.15748031496063):24"/>
+				<v:ud v:nameU="BotLeftOffset" v:prompt="" v:val="VT0(0.15748031496063):24"/>
+				<v:ud v:nameU="BotRightOffset" v:prompt="" v:val="VT0(0.15748031496063):24"/>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="TopLeftOffset" v:prompt="" v:val="VT0(0.19173186623205):1"/>
+				<v:ud v:nameU="TopRightOffset" v:prompt="" v:val="VT0(0.19173186623205):1"/>
+				<v:ud v:nameU="BotLeftOffset" v:prompt="" v:val="VT0(0.19173186623205):1"/>
+				<v:ud v:nameU="BotRightOffset" v:prompt="" v:val="VT0(0.19173186623205):1"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="69.0235" cy="827.717" width="138.05" height="28.3465"/>
+			<path d="M13.8 841.89 L124.24 841.89 A13.8045 13.8045 -180 0 0 138.05 828.09 L138.05 827.35 A13.8045 13.8045 -180 0 0
+						 124.24 813.54 L13.8 813.54 A13.8045 13.8045 -180 0 0 -0 827.35 L0 828.09 A13.8045 13.8045 -180 0 0 13.8
+						 841.89 Z" class="st1"/>
+			<text x="15.57" y="831.92" class="st2" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>AndroidX Instance</text>		</g>
+		<g id="shape94-93" v:mID="94" v:groupContext="shape" transform="translate(-404.497,36.1138) rotate(-60.9401)">
+			<title>工作表.94</title>
+			<path d="M0 841.89 L161.05 841.89" class="st7"/>
+		</g>
+		<g id="shape95-98" v:mID="95" v:groupContext="shape" transform="translate(212.598,-521.574)">
+			<title>工作表.95</title>
+			<desc>…...</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="19.1339" cy="833.385" width="38.27" height="17.0085"/>
+			<rect x="0" y="824.881" width="38.2678" height="17.0085" class="st12"/>
+			<text x="8.63" y="837.33" class="st16" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>…<tspan class="st17">...</tspan></text>		</g>
+		<g id="group96-103" transform="translate(9.35869,-314.611)" v:mID="96" v:groupContext="group">
+			<v:userDefs>
+				<v:ud v:nameU="ScrollDia" v:prompt="" v:val="VT0(0.14763779527559):24"/>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="ScrollDia" v:prompt="" v:val="VT0(0.28555412863797):1"/>
+			</v:userDefs>
+			<title>竖卷形</title>
+			<desc>AndroidX-Kernel: image: AndroidX/Kernel:4.10 cmdline: “consol...</desc>
+			<g id="shape96-104" v:mID="96" v:groupContext="groupContent">
+				<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+				<v:textRect cx="104.027" cy="769.93" width="166.94" height="164.479"/>
+				<path d="M20.56 821.33 L10.28 821.33 A10.2799 10.2799 -180 1 0 10.28 841.89 L177.21 841.89 A10.2767 10.2767 -180
+							 0 0 187.49 831.61 L187.49 697.97 L197.77 697.97 A10.2799 10.2799 -180 0 0 197.77 677.41 L30.84 677.41
+							 A10.2767 10.2767 -180 0 0 20.56 687.69 L20.56 821.33 Z" class="st18"/>
+				<path d="M20.56 821.33 L10.28 821.33 A10.2799 10.2799 -180 1 0 10.28 841.89 L177.21 841.89 A10.2767 10.2767 -180
+							 0 0 187.49 831.61 L187.49 697.97 L197.77 697.97 A10.2799 10.2799 -180 0 0 197.77 677.41 L30.84 677.41
+							 A10.2767 10.2767 -180 0 0 20.56 687.69 L20.56 821.33" class="st19"/>
+				<path d="M20.56 821.33 L20.56 831.61" class="st19"/>
+				<path d="M30.84 697.97 L197.77 697.97" class="st19"/>
+				<path d="M41.12 687.69 A10.2767 10.2767 -180 0 0 30.84 677.41" class="st19"/>
+				<text x="24.56" y="715.23" class="st20" v:langID="2052"><v:paragraph/><v:tabList/>AndroidX-Kernel:<v:newlineChar/><tspan
+							x="24.56" dy="1.2em" class="st21">    </tspan>image: AndroidX/Kernel:4.10<v:newlineChar/><tspan
+							x="24.56" dy="1.287em" class="st21">    </tspan>cmdline: <tspan class="st22">“</tspan><tspan
+							class="st21" v:langID="1033">console</tspan><tspan class="st21" v:langID="1033">=</tspan><tspan
+							class="st21" v:langID="1033">tty</tspan><tspan class="st21" v:langID="1033">0</tspan><tspan
+							class="st22">”<v:newlineChar/></tspan><tspan x="24.56" dy="1.229em" class="st21">AndroidX</tspan>-Init:<v:newlineChar/><tspan
+							x="24.56" dy="1.2em" class="st21">    </tspan>image: AndroidX/Init:v1<v:newlineChar/><tspan x="24.56"
+							dy="1.2em" class="st21">AndroidX</tspan>-Apps:<v:newlineChar/><tspan x="24.56" dy="1.2em" class="st21">    </tspan>image:AndroidX/App:v2<v:newlineChar/><tspan
+							x="24.56" dy="1.2em" class="st21">    </tspan>cmd: [/bin/bash]<v:newlineChar/></text>			</g>
+			<g id="shape97-124" v:mID="97" v:groupContext="shape">
+				<title>工作表.97</title>
+				<v:userDefs>
+					<v:ud v:nameU="ScrollDia" v:prompt="" v:val="VT0(0.14763779527559):24"/>
+					<v:ud v:nameU="FillForegnd" v:prompt="" v:val="VT0(1):26"/>
+					<v:ud v:nameU="ScrollDia" v:prompt="" v:val="VT0(0.28555412863797):1"/>
+					<v:ud v:nameU="FillForegnd" v:prompt="" v:val="VT5(#d8d8d8)"/>
+				</v:userDefs>
+				<path d="M20.56 831.61 L10.28 831.61 A5.13997 5.13997 -180 0 0 10.28 821.33 A10.2799 10.2799 -180 1 0 10.28 841.89
+							 A10.2767 10.2767 -180 0 0 20.56 831.61 ZM41.12 687.69 L30.84 687.69 A5.13997 5.13997 -180 1 0 30.84
+							 697.97 A10.2767 10.2767 -180 0 0 41.12 687.69 Z" class="st23"/>
+			</g>
+		</g>
+		<g id="shape98-126" v:mID="98" v:groupContext="shape" transform="translate(75.4218,-453.613)">
+			<title>工作表.98</title>
+			<desc>AndroidX.yml</desc>
+			<v:textBlock v:margins="rect(2,2,2,2)" v:tabSpace="42.5197"/>
+			<v:textRect cx="56.6929" cy="827.717" width="113.39" height="28.3465"/>
+			<rect x="0" y="813.543" width="113.386" height="28.3465" class="st24"/>
+			<text x="15.67" y="831.92" class="st25" v:langID="2052"><v:paragraph v:horizAlign="1"/><v:tabList/>AndroidX.yml</text>		</g>
+	</g>
+</svg>
