@@ -13,7 +13,7 @@ The figure provides an overview of AndroidX’s architecture. It can be clearly 
 
 Internal to the AndroidX instance in this figure, a minimalist Android Kernel called AndroidX-Kernel is booted directly by hypervisor. The AndroidX-Kernel employs a tiny Android initialization service called AndroidX-Init to load the images from host and then launch them. Through containing applications within separate VM instances and kernel spaces, AndroidXs are able to provide more excellent workload isolation than containers, and security advantages like VMs, which are much suitable for multi-tenant cloud environments.
 
-#### How to use
+## How to use
 
 We provide a detailed description of the document for you. This document describes how to build and run AndroidXs on the ordinary GNU/Linux platform.
 
