@@ -17,7 +17,7 @@ Internal to the AndroidX instance in this figure, a minimalist Android Kernel ca
 
 ## How to use
 
-We provide a detailed description of the document for you. This document describes how to build and run AndroidXs on the ordinary GNU/Linux platform.
+We provide a detailed description of the [document](https://github.com/CGCL-codes/AndroidX/blob/master/docs/AndroidX.md) for you. This document describes how to build and run AndroidXs on the ordinary GNU/Linux platform.
 
 
 
