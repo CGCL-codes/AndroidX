@@ -1,0 +1,280 @@
+package main
+
+import (
+	"errors"
+	"flag"
+	"fmt"
+	"io/ioutil"
+	"os"
+	"os/exec"
+	"path/filepath"
+	"runtime"
+	"strconv"
+	"strings"
+
+	"github.com/google/uuid"
+	log "github.com/sirupsen/logrus"
+)
+
+// QemuConfig contains the config for Qemu
+type QemuConfig struct {
+	Path           string
+	KernelBoot     bool
+	GUI            bool
+	ISOImages      []string
+	StatePath      string
+	Arch           string
+	CPUs           string
+	Memory         string
+	KVM            bool
+	QemuBinPath    string
+	QemuImgPath    string
+	PublishedPorts []string
+	NetdevConfig   string
+	UUID           uuid.UUID
+}
+
+const (
+	qemuNetworkingNone    string = "none"
+	qemuNetworkingUser           = "user"
+	qemuNetworkingTap            = "tap"
+	qemuNetworkingBridge         = "bridge"
+	qemuNetworkingDefault        = qemuNetworkingUser
+)
+
+var (
+	defaultArch string
+)
+
+func init() {
+	switch runtime.GOARCH {
+	case "arm64":
+		defaultArch = "aarch64"
+	case "amd64":
+		defaultArch = "x86_64"
+	}
+}
+
+/*
+ * 参数-enable-kvm
+ */
+func haveKVM() bool {
+	_, err := os.Stat("/dev/kvm")
+	return !os.IsNotExist(err)
+}
+
+/*
+ * run qemu
+ */
+func runQemu(args []string) {
+	invoked := filepath.Base(os.Args[0])
+	flags := flag.NewFlagSet("qemu", flag.ExitOnError)
+	flags.Usage = func() {
+		fmt.Printf("USAGE: %s run qemu [options] path\n\n", invoked)
+		fmt.Printf("'path' specifies the path to the VM image.\n")
+		fmt.Printf("\n")
+		fmt.Printf("Options:\n")
+		flags.PrintDefaults()
+		fmt.Printf("\n")
+		fmt.Printf("If not running as root note that '-networking bridge,br0' requires a\n")
+		fmt.Printf("setuid network helper and appropriate host configuration, see\n")
+		fmt.Printf("http://wiki.qemu.org/Features/HelperNetworking.\n")
+	}
+	// Display flags
+	enableGUI := flags.Bool("gui", true, "Set qemu to use video output instead of stdio")
+	// Boot type; we try to determine automatically
+	kernelBoot := flags.Bool("kernel", true, "Boot image is kernel+initrd+cmdline 'path'-kernel/-initrd/-cmdline")
+	// State flags
+	state := flags.String("state", "", "Path to directory to keep VM state in")
+	data := flags.String("data", "", "Metadata to pass to VM (either a path to a file or a string)")
+	// VM configuration
+	enableKVM := flags.Bool("kvm", haveKVM(), "Enable KVM acceleration")
+	arch := flags.String("arch", defaultArch, "Type of architecture to use, e.g. x86_64, aarch64")
+	cpus := flags.String("cpus", "2", "Number of CPUs")
+	mem := flags.String("mem", "2048", "Amount of memory in MB")
+	// Generate UUID, so that /sys/class/dmi/id/product_uuid is populated
+	vmUUID := uuid.New()
+	// Networking
+	networking := flags.String("networking", qemuNetworkingDefault, "Networking mode. Valid options are 'default', 'user', 'bridge[,name]', tap[,name] and 'none'. 'user' uses QEMUs userspace networking. 'bridge' connects to a preexisting bridge. 'tap' uses a prexisting tap device. 'none' disables networking.`")
+
+	publishFlags := multipleFlag{}
+	flags.Var(&publishFlags, "publish", "Publish a vm's port(s) to the host (default [])")
+
+	if err := flags.Parse(args); err != nil {
+		log.Fatal("Unable to parse args")
+	}
+	remArgs := flags.Args()
+
+	// These envvars override the corresponding command line
+	// options. So this must remain after the `flags.Parse` above.
+	envOverrideBool("ANDROIDKIT_QEMU_KVM", enableKVM)
+
+	if len(remArgs) == 0 {
+		fmt.Println("Please specify the path to the image to boot")
+		flags.Usage()
+		os.Exit(1)
+	}
+	path := remArgs[0]
+	if err := pathExists(path, state); err != nil {
+		fmt.Println("The iso image is not exist")
+		flags.Usage()
+		os.Exit(1)
+	}
+
+	if *data != "" {
+		var d []byte
+		if _, err := os.Stat(*data); os.IsNotExist(err) {
+			d = []byte(*data)
+		} else {
+			d, err = ioutil.ReadFile(*data)
+			if err != nil {
+				log.Fatalf("Cannot read user data: %v", err)
+			}
+		}
+		isoPath := filepath.Join(*state, "data.iso")
+		if err := WriteMetadataISO(isoPath, d); err != nil {
+			log.Fatalf("Cannot write user data ISO: %v", err)
+		}
+		isoPaths = append(isoPaths, isoPath)
+	}
+
+	netdevConfig := setNetworking(networking, publishFlags)
+
+	config := QemuConfig{
+		Path:           path,
+		ISOBoot:        *isoBoot,
+		GUI:            *enableGUI,
+		ISOImages:      isoPaths,
+		StatePath:      *state,
+		Arch:           *arch,
+		CPUs:           *cpus,
+		Memory:         *mem,
+		KVM:            *enableKVM,
+		PublishedPorts: publishFlags,
+		NetdevConfig:   netdevConfig,
+		UUID:           vmUUID,
+	}
+
+	config = discoverBackend(config)
+	if err := runQemuLocal(config); err != nil {
+		log.Fatal(err.Error())
+	}
+}
+
+/*
+ * run qemu locally
+ */
+func runQemuLocal(config QemuConfig) error {
+	var args []string
+	config, args = buildQemuCmdline(config)
+
+	qemuCmd := exec.Command(config.QemuBinPath, args...)
+
+	// If verbosity is enabled print out the full path/arguments
+	log.Debugf("%v\n", qemuCmd.Args)
+	return qemuCmd.Run()
+}
+
+/*
+ * find if qemu-system-x86_64(amd64) or qemu-system-aarch64(arm64) exists in the system
+ * if not, exit.
+ */
+func discoverBackend(config QemuConfig) QemuConfig {
+	qemuBinPath := "qemu-system-" + config.Arch
+
+	var err error
+	if config.QemuBinPath, err = exec.LookPath(qemuBinPath); err != nil {
+		fmt.Printf("Unable to find %s within the $PATH.\n", qemuBinPath)
+		os.Exit(1)
+	}
+	return config
+}
+
+/*
+ * find if iso-path is exists, if exists, mkdir ${iso-path}-state
+ */
+func pathExists(path string, state *string) error {
+	prefix := path
+	_, err := os.Stat(path)
+	stat := err == nil
+
+	// if the path does not exist, return error
+	// trying to do a kernel boot ?
+	if !stat || !strings.HasSuffix(path, "-kernel") {
+		return errors.New("Could not find kernel path")
+	}
+
+	prefix = strings.TrimSuffix(path, "-kernel")
+
+	if *state == "" {
+		*state = prefix + "-state"
+	}
+
+	if _, err = os.Stat(*state); err == nil {
+		//path-state is exists, must be deleted
+		if err = os.RemoveAll(*state); err != nil {
+			fmt.Println("Could not remove state directory")
+			return err
+		}
+	}
+
+	if err := os.MkdirAll(*state, 0755); err != nil {
+		log.Fatalf("Could not create state directory: %v", err)
+		return err
+	}
+	return nil
+}
+
+/*
+ * set qemu networking
+ */
+func setNetworking(networking *string, publishFlags multipleFlag) string {
+	if *networking == "" || *networking == "default" {
+		dflt := qemuNetworkingDefault
+		networking = &dflt
+	}
+	netMode := strings.SplitN(*networking, ",", 2)
+
+	var netdevConfig string
+	switch netMode[0] {
+	case qemuNetworkingUser:
+		netdevConfig = "user,id=t0"
+	case qemuNetworkingTap:
+		if len(netMode) != 2 {
+			log.Fatalf("Not enough arugments for %q networking mode", qemuNetworkingTap)
+		}
+		if len(publishFlags) != 0 {
+			log.Fatalf("Port publishing requires %q networking mode", qemuNetworkingUser)
+		}
+		netdevConfig = fmt.Sprintf("tap,id=t0,ifname=%s,script=no,downscript=no", netMode[1])
+	case qemuNetworkingBridge:
+		if len(netMode) != 2 {
+			log.Fatalf("Not enough arugments for %q networking mode", qemuNetworkingBridge)
+		}
+		if len(publishFlags) != 0 {
+			log.Fatalf("Port publishing requires %q networking mode", qemuNetworkingUser)
+		}
+		netdevConfig = fmt.Sprintf("bridge,id=t0,br=%s", netMode[1])
+	case qemuNetworkingNone:
+		if len(publishFlags) != 0 {
+			log.Fatalf("Port publishing requires %q networking mode", qemuNetworkingUser)
+		}
+		netdevConfig = ""
+	default:
+		log.Fatalf("Invalid networking mode: %s", netMode[0])
+	}
+	return netdevConfig
+}
+
+func envOverrideBool(env string, b *bool) {
+	val := os.Getenv(env)
+	if val == "" {
+		return
+	}
+
+	var err error
+	*b, err = strconv.ParseBool(val)
+	if err != nil {
+		log.Fatal("Unable to parse %q=%q as a boolean", env, val)
+	}
+}

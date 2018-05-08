@@ -1,0 +1,196 @@
+package main
+
+import (
+	"crypto/rand"
+	"fmt"
+	"io/ioutil"
+	"net"
+	"os"
+	"path/filepath"
+	"runtime"
+	"strconv"
+	"strings"
+
+	"github.com/rn/iso9660wrap"
+	log "github.com/sirupsen/logrus"
+)
+
+func buildQemuCmdline(config QemuConfig) (QemuConfig, []string) {
+	// Iterate through the flags and build arguments
+	var qemuArgs []string
+	qemuArgs = append(qemuArgs, "-smp", config.CPUs)
+	qemuArgs = append(qemuArgs, "-m", config.Memory)
+	qemuArgs = append(qemuArgs, "-uuid", config.UUID.String())
+	qemuArgs = append(qemuArgs, "-pidfile", filepath.Join(config.StatePath, "qemu.pid"))
+	// Need to specify the vcpu type when running qemu on arm64 platform, for security reason,
+	// the vcpu should be "host" instead of other names such as "cortex-a53"...
+	if config.Arch == "aarch64" {
+		if runtime.GOARCH == "arm64" {
+			qemuArgs = append(qemuArgs, "-cpu", "host")
+		} else {
+			qemuArgs = append(qemuArgs, "-cpu", "cortex-a57")
+		}
+	}
+	if config.KVM {
+		qemuArgs = append(qemuArgs, "-enable-kvm")
+		if config.Arch == "aarch64" {
+			qemuArgs = append(qemuArgs, "-machine", "virt,gic_version=host")
+		} else {
+			qemuArgs = append(qemuArgs, "-machine", "q35,accel=kvm:tcg")
+		}
+	} else {
+		if config.Arch == "aarch64" {
+			qemuArgs = append(qemuArgs, "-machine", "virt")
+		} else {
+			qemuArgs = append(qemuArgs, "-machine", "q35")
+		}
+	}
+
+	if config.ISOBoot {
+		qemuArgs = append(qemuArgs, "-boot", "d")
+	}
+	//need to be Restructured
+	for i, p := range config.ISOImages {
+		if i == 0 {
+			// This is hdc/CDROM which is skipped by the disk loop above
+			qemuArgs = append(qemuArgs, "-cdrom", p)
+		} else {
+			qemuArgs = append(qemuArgs, "-drive", "file="+p+",index="+strconv.Itoa(i)+",media=cdrom")
+		}
+	}
+	//network
+	if config.NetdevConfig == "" {
+		qemuArgs = append(qemuArgs, "-net", "none")
+	} else {
+		mac := retrieveMAC(config.StatePath)
+		qemuArgs = append(qemuArgs, "-device", "virtio-net-pci,netdev=t0,mac="+mac.String())
+		forwardings, err := buildQemuForwardings(config.PublishedPorts)
+		if err != nil {
+			log.Error(err)
+		}
+		qemuArgs = append(qemuArgs, "-netdev", config.NetdevConfig+forwardings)
+	}
+	//gui
+	if config.GUI != true {
+		qemuArgs = append(qemuArgs, "-nographic")
+	}
+	return config, qemuArgs
+}
+
+type multipleFlag []string
+
+type publishedPorts struct {
+	guest    int
+	host     int
+	protocol string
+}
+
+func (f *multipleFlag) String() string {
+	return "A multiple flag is a type of flag that can be repeated any number of times"
+}
+
+func (f *multipleFlag) Set(value string) error {
+	*f = append(*f, value)
+	return nil
+}
+
+func splitPublish(publish string) (publishedPorts, error) {
+	p := publishedPorts{}
+	slice := strings.Split(publish, ":")
+
+	if len(slice) < 2 {
+		return p, fmt.Errorf("Unable to parse the ports to be published, should be in format <host>:<guest> or <host>:<guest>/<tcp|udp>")
+	}
+
+	hostPort, err := strconv.Atoi(slice[0])
+
+	if err != nil {
+		return p, fmt.Errorf("The provided hostPort can't be converted to int")
+	}
+
+	right := strings.Split(slice[1], "/")
+
+	protocol := "tcp"
+	if len(right) == 2 {
+		protocol = strings.TrimSpace(strings.ToLower(right[1]))
+	}
+
+	if protocol != "tcp" && protocol != "udp" {
+		return p, fmt.Errorf("Provided protocol is not valid, valid options are: udp and tcp")
+	}
+	guestPort, err := strconv.Atoi(right[0])
+
+	if err != nil {
+		return p, fmt.Errorf("The provided guestPort can't be converted to int")
+	}
+
+	if hostPort < 1 || hostPort > 65535 {
+		return p, fmt.Errorf("Invalid hostPort: %d", hostPort)
+	}
+
+	if guestPort < 1 || guestPort > 65535 {
+		return p, fmt.Errorf("Invalid guestPort: %d", guestPort)
+	}
+
+	p.guest = guestPort
+	p.host = hostPort
+	p.protocol = protocol
+	return p, nil
+}
+
+func buildQemuForwardings(publishFlags multipleFlag) (string, error) {
+	if len(publishFlags) == 0 {
+		return "", nil
+	}
+	var forwardings string
+	for _, publish := range publishFlags {
+		p, err := splitPublish(publish)
+		if err != nil {
+			return "", err
+		}
+
+		hostPort := p.host
+		guestPort := p.guest
+
+		forwardings = fmt.Sprintf("%s,hostfwd=%s::%d-:%d", forwardings, p.protocol, hostPort, guestPort)
+	}
+
+	return forwardings, nil
+}
+
+// WriteMetadataISO writes a metadata ISO file in a format usable by pkg/metadata
+func WriteMetadataISO(path string, content []byte) error {
+	outfh, err := os.OpenFile(path, os.O_CREATE|os.O_WRONLY, 0644)
+	if err != nil {
+		return err
+	}
+	defer outfh.Close()
+
+	return iso9660wrap.WriteBuffer(outfh, content, "config")
+}
+
+func retrieveMAC(statePath string) net.HardwareAddr {
+	var mac net.HardwareAddr
+	fileName := filepath.Join(statePath, "mac-addr")
+	// we did not generate a mac yet. generate one
+	mac = generateMAC()
+	if err := ioutil.WriteFile(fileName, []byte(mac.String()), 0640); err != nil {
+		log.Fatalln("failed to write mac-addr file:", err)
+	}
+
+	return mac
+}
+
+func generateMAC() net.HardwareAddr {
+	mac := make([]byte, 6)
+	n, err := rand.Read(mac)
+	if err != nil {
+		log.WithError(err).Fatal("failed to generate random mac address")
+	}
+	if n != 6 {
+		log.WithError(err).Fatal("generated %d bytes for random mac address", n)
+	}
+	mac[0] &^= 0x01 // Clear multicast bit
+	mac[0] |= 0x2   // Set locally administered bit
+	return net.HardwareAddr(mac)
+}

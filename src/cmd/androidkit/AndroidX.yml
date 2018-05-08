@@ -1,0 +1,8 @@
+kernel:
+  image: zjsyhjh/androidx-kernel:3569d0dc175cfd163380ddbccee44784
+  cmdline: "console=tty0"
+init:
+  - zjsyhjh/androidx-init:417cf515633e8af3f819d155cea87f2e
+trust:
+  org:
+    - zjsyhjh
